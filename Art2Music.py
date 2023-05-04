@@ -34,6 +34,13 @@ import glob
 #Make an effected version
 #save the final song and make a midi
 #This function generates frequencies in Hertz from notes
+
+def intro():
+    import streamlit as st
+
+    st.write("# Welcome to My Final Project 👋")
+
+
 def get_piano_notes():   
     # White keys are in Uppercase and black keys (sharps) are in lowercase
     octave = ['C', 'c', 'D', 'd', 'E', 'F', 'f', 'G', 'g', 'A', 'a', 'B'] 
