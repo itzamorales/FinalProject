@@ -36,9 +36,8 @@ import glob
 #This function generates frequencies in Hertz from notes
 
 def intro():
-    import streamlit as st
-
     st.write("# Welcome to My Final Project 👋")
+    st.sidebar.success("Use this to convert art into music.")
 
 
 def get_piano_notes():   
