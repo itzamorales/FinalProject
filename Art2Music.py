@@ -35,9 +35,6 @@ import glob
 #save the final song and make a midi
 #This function generates frequencies in Hertz from notes
 
-def intro():
-    st.write("# Welcome to My Final Project 👋")
-    st.sidebar.success("Use this to convert art into music.")
 
 
 def get_piano_notes():   
