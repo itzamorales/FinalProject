@@ -20,22 +20,12 @@ from scipy.io import wavfile
 import librosa
 import glob
 
-#Keep track of settings
-#Handle user user input
-
-#See if they want to use own image or sample
-#See if we have an image
-
-#Save Image into a temp file
-#Ask the computer to view the image
-#grab Hue from HSV
-#seperate the Hues and convert to Frequency
-#generic song save
-#Make an effected version
-#save the final song and make a midi
-#This function generates frequencies in Hertz from notes
-
-
+#Changed color of application to great funky colors... Enjoy! 
+#Changed dropdown boxes to sliders
+#Changed note duration & pixels to number pickers
+#Changed a check boxes to Radio option (tried to do both, but they had the same key, so I wasn't able to get them both). 
+#Changed a check box into a dropdown option instead.
+#added cover page to app
 
 def get_piano_notes():   
     # White keys are in Uppercase and black keys (sharps) are in lowercase
@@ -252,44 +242,61 @@ elif _radio == "Use User Image":
     img2load = user_data
 
 #Display the image
+#changed boxes to slider
 st.sidebar.image(img2load)    
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    scale = st.selectbox('What scale would you like yo use?', df1['Scale_Choice'])
+    scale = st.select_slider('What scale would you like yo use?', df1['Scale_Choice'])
 
     'You selected the ' + scale + ' scale'
 with col2:
-    key = st.selectbox('What key would you like to use?', df2['Keys']) 
+    key = st.select_slider('What key would you like to use?', df2['Keys']) 
     
     'You selected: ', key
 
 with col3:
-    octave = st.selectbox('What octave would you like to use?', df3['Octaves']) 
+    octave = st.select_slider('What octave would you like to use?', df3['Octaves']) 
 
     'You selected: ', octave
 with col4:
-    harmony = st.selectbox('What harmony would you like to use?', df4['Harmonies']) 
+    harmony = st.select_slider('What harmony would you like to use?', df4['Harmonies']) 
 
     'You selected: ', harmony
 
 col5, col6 = st.columns(2)
 with col5:
     #Ask user if they want to use random pixels
-    random_pixels = st.checkbox('Use random pixels to build song?', value=True)
+    st.markdown("Would you like to use random pixels to build song?")
+    _radio = st.radio("", ("Yes", "No"))
+    
+    random_pixels = st.radio
+    if _radio == "Yes":
+        random_pixels = True
+    elif _radio == "No":
+        random_pixels = False
+    
+    
 with col6:
     #Ask user to select song duration
-    use_octaves = st.checkbox('Randomize note octaves while building song?', value=True) 
+    st.markdown("Would you like to randomize note octaves while building song?")
+    _octavesRadio = st.multiselect("", ("Yes", "No"))
+    
+    use_octaves = st.multiselect
+    if _octavesRadio == "Yes":
+        use_octave = True
+    elif _octavesRadio == "No":
+        use_octave = False
     
 col7, col8 = st.columns(2)
 with col7:
     #Ask user to select song duration
-    t_value = st.slider('Note duration [s]', min_value=0.01, max_value=1.0, step = 0.01, value=0.2)     
+    t_value = st.number_input('Note duration [s]', min_value=0.01, max_value=1.0, step = 0.01, value=0.2)     
 
 with col8:
     #Ask user to select song duration
-    n_pixels = st.slider('How many pixels to use? (More pixels take longer)', min_value=12, max_value=320, step=1, value=60)         
+    n_pixels = st.number_input('How many pixels to use? (More pixels take longer)', min_value=12, max_value=320, step=1, value=60)         
 #***Start Peadalboard Definitions*** 
 st.markdown("## Pedalboard")
 col9, col10,col11,col12 = st.columns(4)
